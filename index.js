@@ -5,10 +5,39 @@ let lineList= [];
 let lineCounter = 0; // Çizgiye benzersiz bir id atamak için sayaç
 let dotCounter=0;
 
+// düğmeleri değişkene atadım
+var zoomInButton = document.getElementById("zoomInButton");
+var zoomOutButton = document.getElementById("zoomOutButton");
+var tablet = document.getElementById("tablet");
+// Başlangıç zoom düzeyi
+var zoomLevel = 1;
+
+// Zoom-In düğmesine tıklanırsa zoomIn fonksiyonunu çağırdım.
+zoomInButton.addEventListener("click", zoomIn);
+// Zoom-Out düğmesine tıklanırsa zoomOut fonksiyonunu çağırdım.
+zoomOutButton.addEventListener("click", zoomOut);
+
+// zoom fonksiyonları
+function zoomIn() {
+    zoomLevel += 0.2;
+    tablet.style.transform = "scale(" + zoomLevel + ")";
+}
+function zoomOut() {
+    if (zoomLevel > 0.2) { 
+        zoomLevel -= 0.2;
+        tablet.style.transform = "scale(" + zoomLevel + ")";
+    }
+}
+
+
 document.getElementById('addTriangleBtn').addEventListener('click', function () {
     addingPoint = true; // add Nokta butonuna tıklandığında eklemeye başlayın
     pointList.length = 0; // Yeni küme için nokta listesini temizle
 });
+
+
+
+
 
 const container = document.getElementById('container-image'); //htmldeki imageyi alma
 container.addEventListener('click', function (event) {
